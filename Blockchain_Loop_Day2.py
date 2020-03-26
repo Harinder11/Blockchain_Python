@@ -2,61 +2,96 @@
 blockchain = []
 
 def get_last_blockchain_value():
+    """ Takes the previous Blockchain's value """
+    if len(blockchain) < 1:
+        return None
     return blockchain[-1]
 
+#For loop without range keyword
+"""
+def verify_chain():
+    #Checks the complete blockchain if previous value is there in the next block
+    block_index = 0
+    is_valid = True
+    for block in blockchain:
+        if block_index == 0:
+            block_index += 1
+            continue
+        elif block[0] == blockchain[block_index -1]:
+            is_valid = True
+        else:
+            is_valid = False
+            break
+        block_index += 1
+    return is_valid
+"""
+#For loop with Range keyword
+def verify_chain():
+    print('Issue')
+    #Checks the complete blockchain if previous value is there in the next block
+    is_valid = True
+    for block_index in range (len(blockchain)):
+        if block_index == 0:
+            continue
+        elif blockchain[block_index][0] == blockchain[block_index -1]:
+            is_valid = True
+        else:
+            is_valid = False
+            break
+    return is_valid
 
-def add_value(transaction_amount, last_transaction = [1]):
+
+def add_transaction(transaction_amount, last_transaction = [1]):
+    """ This function adds the user input to the blockchain """
+    #Checks if last transaction is empty, as last_transaction is coming from get_last_blockchain_value
+    if last_transaction == None:
+        last_transaction = [1]
     blockchain.append([last_transaction, transaction_amount])
 
-
-def get_user_input():
+def get_user_transaction():
+    """ Returns the input of the user """
     return float(input('Your transaction amount please:'))
 
-tx_amount = get_user_input()
-add_value(tx_amount)
+def get_user_choice():
+    return input("Your choice")
 
-tx_amount = get_user_input()
-add_value(tx_amount, get_last_blockchain_value())
+def print_blockchain_element():
+    #Outputs the blockchain list to the console print (blockchain)
+    for block in blockchain:
+        print('Outputting Block')
+        print(block)
+    else:
+        #this will execute whenever the for loop is over either terminated or finished with all iterables
+        print ('-' * 20)
+waiting_for_input =True
 
-tx_amount = get_user_input()
-add_value(tx_amount, get_last_blockchain_value())
+while waiting_for_input:
+    print("Please choose")
+    print("1: If you want to add a transaction")
+    print("2: If you want to show the blockchain")
+    print("h: If you want to manipulate the Blockchain")
+    print("q: If you want to quit")
+    user_choice = get_user_choice()
+    if user_choice == '1':
+        # Takes transaction from user
+        tx_amount = get_user_transaction()
+        add_transaction(tx_amount, get_last_blockchain_value())
+    elif user_choice == '2':
+        print_blockchain_element()
+    elif user_choice == 'h':
+        if len(blockchain) >= 1:
+            blockchain[0] = [2]
+    elif user_choice == 'q':
+        waiting_for_input = False
+    else:
+        print("Input is invalid, please enter a valid value from the list")
 
-print (blockchain)
-
-#With Function, Default Argument and Return
-"""
-blockchain = []
-
-def get_last_blockchain_value():
-    return blockchain[-1]
-
-
-def add_value(transaction_amount, last_transaction = [1]):
-    blockchain.append([last_transaction, transaction_amount])
-
-add_value(5)
-add_value(6.3, get_last_blockchain_value())
-add_value(8.4, get_last_blockchain_value())
-
-print (blockchain)
-"""
-
-#With Function and Retrun
-
-"""
-blockchain = [[1]]
-
-def get_last_blockchain_value():
-    return blockchain[-1]
-
-
-def add_value(transaction_amount):
-    blockchain.append([get_last_blockchain_value(), transaction_amount])
-
-add_value(5)
-add_value(6.3)
-add_value(8.4)
-
-print (blockchain)
-#"""
-
+    if not verify_chain():
+        print_blockchain_element()
+        print("Invalid Blockchain")
+        break
+else:
+    #this will execute whenever the while loop is over either terminated or finished with all iterables
+    print("User left!!!")
+    
+print('Done!')
