@@ -3,6 +3,7 @@ blockchain = []
 
 def get_last_blockchain_value():
     """ Takes the previous Blockchain's value """
+    #print('inside get_last_blockchain',len(blockchain))
     if len(blockchain) < 1:
         return None
     return blockchain[-1]
@@ -27,13 +28,14 @@ def verify_chain():
 """
 #For loop with Range keyword
 def verify_chain():
-    print('Issue')
     #Checks the complete blockchain if previous value is there in the next block
     is_valid = True
     for block_index in range (len(blockchain)):
         if block_index == 0:
             continue
         elif blockchain[block_index][0] == blockchain[block_index -1]:
+            #print('blockchain[block_index][0]',blockchain[block_index][0])
+            #print('blockchain[block_index -1]',blockchain[block_index -1])
             is_valid = True
         else:
             is_valid = False
@@ -47,6 +49,8 @@ def add_transaction(transaction_amount, last_transaction = [1]):
     if last_transaction == None:
         last_transaction = [1]
     blockchain.append([last_transaction, transaction_amount])
+    #print("Inside add_transaction block is", blockchain)
+    #print('Inside add_transaction lentgh is', len(blockchain))
 
 def get_user_transaction():
     """ Returns the input of the user """
@@ -57,6 +61,7 @@ def get_user_choice():
 
 def print_blockchain_element():
     #Outputs the blockchain list to the console print (blockchain)
+    print('Complete blockchain is', blockchain)
     for block in blockchain:
         print('Outputting Block')
         print(block)
