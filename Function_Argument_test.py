@@ -13,4 +13,8 @@ def average(first_number, second_number = 6):
 def get_userinput():
     return int(input("please enter your nummber"))
 
+#In this case it will take the default argument that is 6
+print(average(3))
+
+#Here the function average will take the second argument from get_userinput()
 print(average(3, get_userinput()))
