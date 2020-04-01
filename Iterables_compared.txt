@@ -1,0 +1,5 @@
+Iterables:
+List: Muttable, Ordered(Indexing), Duplicates
+Sets: Muttable, Unordered(No Indexing), No Duplicates
+Tuples: Immutable, Ordered(Indexing), Duplicates
+Dict: Muttable, unordered(Indexing done by keys), No duplicate keys
