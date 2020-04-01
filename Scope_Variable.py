@@ -1,5 +1,5 @@
 
-#With Global keyword
+"""#With Global keyword
 
 name = "HSK"
 
@@ -15,8 +15,9 @@ print(name)
 name = "HSK"
 
 def get_name():
-    name = input('Your name please')
-
+    #name = input('Your name please')
+    name = "koranga"
+    print(name)
 get_name()
 print(name)
-"""
+#"""
