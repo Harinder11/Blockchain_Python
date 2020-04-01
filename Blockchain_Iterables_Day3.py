@@ -28,7 +28,7 @@ def get_last_blockchain_value():
 #For loop with Range keyword
 def verify_chain():
     #Checks the complete blockchain if previous value is there in the next block
-    for (index,block) in enumerate(blockchain):#enumirate gives the tple with index an data
+    for (index,block) in enumerate(blockchain):#enumerate gives the tuple with index an data
         if index == 0:
             continue
         elif block['previous_hash'] != hash_block(blockchain[index-1]):
@@ -77,7 +77,7 @@ def verify_alltransactions():
     
 def get_balance(participants):
     tx_sender = [[tx['amount'] for tx in  block['transaction'] if tx['sender'] == participants] for block in blockchain]
-    open_tx_sender = [tx['amount'] for tx in open_transaction if open_transaction['sender']==participants]
+    open_tx_sender = [tx['amount'] for tx in open_transaction if tx['sender']==participants]
     tx_sender.append(open_tx_sender)
     amount_sent = 0
     amount_received = 0
