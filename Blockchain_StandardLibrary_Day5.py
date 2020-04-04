@@ -44,8 +44,9 @@ def verify_chain():
             proof without adding the reward transaction and here we are just checkig if we are getting the valid hasg('00') with transaction, previous hash and the proof number that we had calculated.
             '''
         if not valid_proof(block['transaction'][:-1], block['previous_hash'], block['proof']):
+            print('Proof of Work not valid')
             return False
-        print('Proof of Work not valid')
+            
     return True
 
 
