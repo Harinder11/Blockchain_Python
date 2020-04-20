@@ -18,5 +18,9 @@ def hash_block(block):
     Arguments:
         :block: The block that should be hashed
     '''
-    return hash_string_256(json.dumps(block, sort_keys=True).encode())
+    #JSON does not supports objects, so we have to convert it into dictionary
+    hashable_block = block.__dict__.copy()
+    hashable_block['transaction'] = [tx.ordered_tx() for tx in hashable_block['transaction']]
+    print('hashable_block is {}'.format(hashable_block))
+    return hash_string_256(json.dumps(hashable_block, sort_keys=True).encode())
     
